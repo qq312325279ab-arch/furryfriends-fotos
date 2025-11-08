@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome - FurryFriends Fotos{% endblock %}
+
+{% block content %}
+<div class="hero-section rounded">
+    <div class="container text-center">
+        <h1 class="display-4 mb-4">Welcome to FurryFriends Fotos</h1>
+        <p class="lead">Share the adorable moments of your beloved pets with the world!</p>
+        
+        {% if not current_user.is_authenticated %}
+        <div class="mt-5">
+            <a href="{{ url_for('auth.signup') }}" class="btn btn-light btn-lg me-3">
+                <i class="fas fa-user-plus"></i> Join Now
+            </a>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+        </div>
+        {% else %}
+        <div class="mt-5">
+            <a href="{{ url_for('main.gallery') }}" class="btn btn-light btn-lg me-3">
+                <i class="fas fa-images"></i> Browse Gallery
+            </a>
+            <a href="{{ url_for('main.upload') }}" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-upload"></i> Upload Photos
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4 text-center">
+        <i class="fas fa-camera fa-3x text-primary mb-3"></i>
+        <h3>Upload Photos</h3>
+        <p>Share high-quality photos of your furry friends with the community.</p>
+    </div>
+    <div class="col-md-4 text-center">
+        <i class="fas fa-users fa-3x text-primary mb-3"></i>
+        <h3>Join Community</h3>
+        <p>Connect with other pet lovers and discover adorable pets from around the world.</p>
+    </div>
+    <div class="col-md-4 text-center">
+        <i class="fas fa-cloud fa-3x text-primary mb-3"></i>
+        <h3>Cloud Powered</h3>
+        <p>Built with Azure Cloud Services for reliable and scalable performance.</p>
+    </div>
+</div>
+{% endblock %}
