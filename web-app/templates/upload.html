@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Photo - FurryFriends Fotos{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card pet-card">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">
+                    <i class="fas fa-upload"></i> Upload Pet Photo
+                </h2>
+                
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Select Image File</label>
+                        <input class="form-control" type="file" id="file" name="file" accept="image/*" required>
+                        <div class="form-text">Supported formats: JPG, PNG, GIF, BMP. Maximum size: 10MB</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="caption" class="form-label">Image Caption (Optional)</label>
+                        <textarea class="form-control" id="caption" name="caption" rows="3" 
+                                  placeholder="Tell us about your adorable pet..."></textarea>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('main.gallery') }}" class="btn btn-secondary me-md-2">Cancel</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-upload"></i> Upload Photo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
