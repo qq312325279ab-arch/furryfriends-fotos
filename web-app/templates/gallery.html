@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Pet Gallery - FurryFriends Fotos{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-images"></i> Pet Photo Gallery</h2>
+    <a href="{{ url_for('main.upload') }}" class="btn btn-primary">
+        <i class="fas fa-upload"></i> Upload New Photo
+    </a>
+</div>
+
+{% if images %}
+<div class="row">
+    {% for image in images %}
+    <div class="col-md-4 mb-4">
+        <div class="card pet-card">
+            <img src="{{ image.thumbnailURL }}" class="card-img-top" alt="{{ image.caption }}" 
+                 style="height: 250px; object-fit: cover;">
+            <div class="card-body">
+                <p class="card-text">{{ image.caption or "No description" }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                        <i class="fas fa-calendar"></i> {{ image.created_at.strftime('%Y-%m-%d %H:%M') }}
+                    </small>
+                    <a href="{{ image.originalURL }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-expand"></i> View Original
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center py-5">
+    <i class="fas fa-camera fa-5x text-muted mb-4"></i>
+    <h4>No photos yet</h4>
+    <p class="text-muted">Be the first to share a photo of your adorable pet!</p>
+    <a href="{{ url_for('main.upload') }}" class="btn btn-primary btn-lg">
+        <i class="fas fa-upload"></i> Upload First Photo
+    </a>
+</div>
+{% endif %}
+{% endblock %}
